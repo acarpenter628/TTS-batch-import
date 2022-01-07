@@ -22,7 +22,7 @@ for name in fileList:
     if fileType in IMAGE_FILES:
         #print(combinedPath)
         imageFilenameListString += "    \"" + combinedPath + "\",\n"
-        imageDescriptionString += "....\"\", -- Description for file \'" + name + "\'\n"
+        imageDescriptionString += "    \"\", -- Description for file \'" + name + "\'\n"
 
 # Close the array
 imageFilenameListString += "}\n\n"
