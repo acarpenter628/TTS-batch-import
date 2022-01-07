@@ -3,11 +3,11 @@ from os import listdir
 
 FOLDER = "C:/Users/acarp/Desktop/Temporary"     # This must use foward slashes and not end with a slash
 OUTPUT_FILE = "image_list.txt"
-IMAGE_FILES = ["png", "jpg", "bmp", "gif"]
+IMAGE_FILES = ["png", "jpg"]  # No gif or bmp allowed
 
 # Write the start of the arrays
 imageFilenameListString = "imageList = \n{\n"
-imageDescriptionString = "imageDescriptions = \n{\n"
+imageNameString = "imageNames = \n{\n"
 
 
 # Get the list of files
@@ -22,13 +22,13 @@ for name in fileList:
     if fileType in IMAGE_FILES:
         #print(combinedPath)
         imageFilenameListString += "    \"" + combinedPath + "\",\n"
-        imageDescriptionString += "    \"\", -- Description for file \'" + name + "\'\n"
+        imageNameString += "    \"\", -- Description for file \'" + name + "\'\n"
 
 # Close the array
 imageFilenameListString += "}\n\n"
-imageDescriptionString += "}"
+imageNameString += "}"
 
 # Open the output file
 with open(OUTPUT_FILE, "w") as outFile:
     outFile.write(imageFilenameListString)
-    outFile.write(imageDescriptionString)
+    outFile.write(imageNameString)
