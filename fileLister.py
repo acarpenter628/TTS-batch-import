@@ -5,25 +5,30 @@ FOLDER = "C:/Users/acarp/Desktop/Temporary"     # This must use foward slashes a
 OUTPUT_FILE = "image_list.txt"
 IMAGE_FILES = ["png", "jpg", "bmp", "gif"]
 
+# Write the start of the arrays
+imageFilenameListString = "imageList = \n{\n"
+imageDescriptionString = "imageDescriptions = \n{\n"
+
+
+# Get the list of files
+fileList = os.listdir(FOLDER)
+for name in fileList:
+    # Create the full path
+    # Assume forward slash.  It's probably not "correct", but it makes things easier
+    combinedPath = FOLDER + "/" + name
+    # Get the file type
+    fileType = name[-3:]
+    # Only save the file if it's an image
+    if fileType in IMAGE_FILES:
+        #print(combinedPath)
+        imageFilenameListString += "    \"" + combinedPath + "\",\n"
+        imageDescriptionString += "....\"\", -- Description for file \'" + name + "\'\n"
+
+# Close the array
+imageFilenameListString += "}\n\n"
+imageDescriptionString += "}"
+
 # Open the output file
 with open(OUTPUT_FILE, "w") as outFile:
-    # Write the start of the array
-    outFile.write("imageList = \n{\n")
-
-    # Get the list of files
-    fileList = os.listdir(FOLDER)
-    for name in fileList:
-        # Create the full path
-        # Assume forward slash.  It's probably not "correct", but it makes things easier
-        combinedPath = FOLDER + "/" + name
-        # Get the file type
-        fileType = name[-3:]
-        # Only save the file if it's an image
-        if fileType in IMAGE_FILES:
-            #print(combinedPath)
-            outFile.write("    \"" + combinedPath + "\",\n")
-            
-    # Close the array
-    outFile.write("}")
-
-
+    outFile.write(imageFilenameListString)
+    outFile.write(imageDescriptionString)
