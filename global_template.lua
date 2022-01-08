@@ -1,38 +1,37 @@
+-- Assign Hotkeys
+NUMPAD_TILE_KEY = 4
+NUMPAD_FIGURE_KEY = 6
+
 imageList = 
 {
-
+    -- Copy values here
 }
 
 imageNames = 
 {
-
+    -- Copy values here
 }
 
-spawnParams = 
-{
-    type = "Custom_Token" -- or Figurine_Custom
-    -- Everything else can be default
-}
-
-customParams = 
-{
-    -- image is set below, everything else can be default
-}
+spawnParams = { } -- type is set below, everything else can be default
+customParams = { } -- image is set below, everything else can be default
 
 
 function onScriptingButtonUp(index, color)
-    print("Print ", index)
     
-    if index == 4 then
+    if index == NUMPAD_TILE_KEY then  -- Import images as tiles
         for i, fileName in ipairs(imageList) do
-            print(fileName)
+            spawnParams.type = "Custom_Token"
             customParams.image = imageList[i]
-            local spawnObj = spawnObject(spawnParams)
-            spawnObj.setCustomObject(customParams)
-            spawnObj.setName(imageNames[i])
+            local spawnObj = spawnObject(spawnParams) -- Spawn custom tile
+            spawnObj.setCustomObject(customParams) -- Import image
+            spawnObj.setName(imageNames[i])  -- Set Name
         end
-    end
+    elseif index == NUMPAD_FIGURE_KEY then  -- Import images as figures
+        for i, fileName in ipairs(imageList) do
+            spawnParams.type = "Figurine_Custom"
+            customParams.image = imageList[i]
+            local spawnObj = spawnObject(spawnParams) -- Spawn custom figure
+            spawnObj.setCustomObject(customParams) -- Import image
+            spawnObj.setName(imageNames[i]) -- Set Name
+        end    end
 end
-
-
- -- https://www.reddit.com/r/tabletopsimulator/comments/a9tsbi/spawning_custom_object_problem_with_script/
