@@ -1,5 +1,5 @@
 -- Assign Hotkeys
-NUMPAD_TILE_KEY = 4
+NUMPAD_TOKEN_KEY = 4
 NUMPAD_FIGURE_KEY = 6
 
 imageList = 
@@ -18,7 +18,7 @@ customParams = { } -- image is set below, everything else can be default
 
 function onScriptingButtonUp(index, color)
     
-    if index == NUMPAD_TILE_KEY then  -- Import images as tiles
+    if index == NUMPAD_TOKEN_KEY then  -- Import images as tiles
         for i, fileName in ipairs(imageList) do
             spawnParams.type = "Custom_Token"
             customParams.image = imageList[i]
@@ -33,5 +33,6 @@ function onScriptingButtonUp(index, color)
             local spawnObj = spawnObject(spawnParams) -- Spawn custom figure
             spawnObj.setCustomObject(customParams) -- Import image
             spawnObj.setName(imageNames[i]) -- Set Name
-        end    end
+        end
+    end
 end
